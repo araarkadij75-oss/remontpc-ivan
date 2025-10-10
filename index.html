@@ -2,116 +2,145 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Компьютерный мастер Иван — ремонт компьютеров и ноутбуков, выезд по Санкт-Петербург</title>
-  <meta name="description" content="Выездной сервис по ремонту компьютеров и ноутбуков в Санкт-Петербург. Бесплатная диагностика, приезд за 30 минут, гарантия до 12 месяцев. Звоните +7 981 017-23-45" />
-  <meta name="keywords" content="ремонт компьютеров, ремонт ноутбуков, мастер на дом Санкт-Петербург, выездной мастер, чистка ноутбука, установка SSD, ускорение ПК, восстановление данных, Компьютерный мастер Иван" />
-  <link rel="icon" href="/favicon.ico" />
-  <meta name="theme-color" content="#2563EB" />
-  <meta property="og:title" content="Компьютерный мастер Иван — выездной сервис, Санкт-Петербург" />
-  <meta property="og:description" content="Бесплатная диагностика, приезд за 30 минут, гарантия до 12 месяцев. Звоните +7 981 017-23-45" />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="ru_RU" />
-  <meta property="og:image" content="https://remontpc-ivan.example/og-image.png" />
-  <link rel="canonical" href="https://remontpc-ivan.example/" />
-  <meta name="robots" content="index, follow" />
-  <style>
-    :root{{--bg1:#4f46e5;--bg2:#38bdf8;--muted:#6b7280;--card:#fff;--maxw:1100px}}
-    html,body{{margin:0;padding:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:linear-gradient(135deg,var(--bg1),var(--bg2));color:#0f172a}}
-    .wrap{{max-width:var(--maxw);margin:0 auto;padding:28px}}
-    header{{display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(255,255,255,0.92);padding:12px;border-radius:12px;box-shadow:0 6px 24px rgba(2,6,23,0.12)}}
-    .logo{{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--bg1),var(--bg2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}}
-    .btn{{display:inline-block;background:#fff;color:var(--bg1);padding:10px 14px;border-radius:10px;font-weight:700;text-decoration:none}}
-    .hero{{display:grid;grid-template-columns:1fr;gap:18px;align-items:center;margin-top:22px}}
-    @media(min-width:900px){{.hero{{grid-template-columns:1fr 420px}}}}
-    .card{{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.12)}}
-    form input, form select, form textarea{{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ee;margin-top:8px}}
-    form button{{background:var(--bg1);color:white;padding:12px;border-radius:10px;border:0;font-weight:700;cursor:pointer;margin-top:8px}}
-  </style>
-  <!-- Structured data: LocalBusiness + FAQ + Services -->
-  <script type="application/ld+json">
-  {"@context": "https://schema.org", "@graph": [{"@type": "LocalBusiness", "name": "Компьютерный мастер Иван", "image": "https://remontpc-ivan.example/og-image.png", "telephone": "+7 981 017-23-45", "email": "ivanhoron@mail.ru", "address": {"@type": "PostalAddress", "addressLocality": "Санкт-Петербург", "addressCountry": "RU"}, "url": "https://remontpc-ivan.example", "description": "Выездной сервис по ремонту компьютеров и ноутбуков в Санкт-Петербург. Бесплатная диагностика, приезд за 30 минут, гарантия до 12 месяцев."}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Сколько стоит диагностика?", "acceptedAnswer": {"@type": "Answer", "text": "Диагностика бесплатная при выезде и в сервисе. Сначала делаю оценку и согласование стоимости."}}, {"@type": "Question", "name": "Какая гарантия на работы?", "acceptedAnswer": {"@type": "Answer", "text": "Гарантия до 12 месяцев в зависимости от типа работ и запчастей."}}, {"@type": "Question", "name": "Приедете ли вы в выходной?", "acceptedAnswer": {"@type": "Answer", "text": "Работаю ежедневно с 9:00 до 22:00 — приоритетные выезды по согласованию."}}]}, {"@type": "Service", "serviceType": "Ремонт компьютеров и ноутбуков", "provider": {"@type": "LocalBusiness", "name": "Компьютерный мастер Иван"}}]}
-  </script>
-  <!-- Google Analytics 4 (replace G-REPLACE_WITH_YOUR_ID with your ID) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-REPLACE_WITH_YOUR_ID"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-REPLACE_WITH_YOUR_ID', {{'send_page_view': true}});
-  </script>
-  <!-- Yandex.Metrika (replace REPLACE_YANDEX_ID) -->
-  <script type="text/javascript">
-    (function(m,e,t,r,i,k,a){{m[i]=m[i]||function(){{(m[i].a=m[i].a||[]).push(arguments)}};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a)}})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-    ym(REPLACE_YANDEX_ID, "init", {{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true}});
-  </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/REPLACE_YANDEX_ID" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Компьютерный мастер Иван — Ремонт компьютеров и ноутбуков в Санкт-Петербург</title>
+<meta name="description" content="Выездной ремонт компьютеров и ноутбуков в Санкт-Петербург. Бесплатная диагностика, выезд, установка Windows, замена SSD, чистка. Звоните +7 981 017-23-45">
+<link rel="icon" href="logo.svg">
+<link rel="stylesheet" href="style.css">
+<meta property="og:title" content="Компьютерный мастер Иван — выездной сервис, Санкт-Петербург" />
+<meta property="og:description" content="Бесплатная диагностика, приезд за 30 минут, гарантия до 12 месяцев. Звоните +7 981 017-23-45" />
+<meta property="og:image" content="https://remontpc-ivan.example/og-image.png" />
+<script type="application/ld+json">
+{{
+  "@context":"https://schema.org",
+  "@type":"LocalBusiness",
+  "name":"Компьютерный мастер Иван",
+  "image":"https://remontpc-ivan.example/og-image.png",
+  "telephone":"+7 981 017-23-45",
+  "email":"ivanhoron@mail.ru",
+  "address":{{"@type":"PostalAddress","addressLocality":"Санкт-Петербург","addressCountry":"RU"}},
+  "url":"https://remontpc-ivan.example",
+  "description":"Выездной ремонт компьютеров и ноутбуков в Санкт-Петербург. Бесплатная диагностика и гарантия."
+}}
+</script>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div style="display:flex;align-items:center;gap:12px">
-        <div class="logo" aria-hidden="true">ИВ</div>
-        <div>
-          <div style="font-weight:700">Компьютерный мастер Иван</div>
-          <div style="font-size:13px;color:var(--muted)">Санкт-Петербург — выездной сервис</div>
+<div class="container">
+  <header class="header">
+    <div class="brand">
+      <div class="logo-wrap"><img src="logo.svg" alt="logo" style="width:56px;height:56px"></div>
+      <div>
+        <div class="title">Компьютерный мастер Иван</div>
+        <div class="subtitle">Санкт-Петербург · выездной сервис</div>
+      </div>
+    </div>
+    <div class="cta">
+      <div class="small">с 9:00 до 22:00</div>
+      <a class="btn" href="tel:+7 981 017-23-45">Позвонить</a>
+      <a class="btn-ghost" href="https://wa.me/79810172345">WhatsApp</a>
+    </div>
+  </header>
+
+  <main class="hero" role="main">
+    <section>
+      <div class="card">
+        <h1 style="margin:0;font-size:28px">Компьютерный мастер Иван — профессиональный и честный ремонт</h1>
+        <p class="small" style="margin-top:8px">Бесплатная диагностика при выезде. Быстро, аккуратно, с гарантией. Работает напрямую — без посредников.</p>
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn" href="tel:+7 981 017-23-45">Вызвать мастера</a>
+          <a class="btn-ghost" href="mailto:ivanhoron@mail.ru">Написать на почту</a>
+          <a class="btn-ghost" href="#services">Услуги</a>
         </div>
       </div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <div style="font-size:13px;color:var(--muted)">Работаю с 9:00 до 22:00</div>
-        <a class="btn" href="tel:+7 981 017-23-45">+7 981 017-23-45</a>
-      </div>
-    </header>
 
-    <main class="hero" role="main">
-      <section>
-        <h1 style="font-size:32px;color:white;margin:0">Ремонт компьютеров и ноутбуков — выезд по Санкт-Петербург</h1>
-        <p style="color:rgba(255,255,255,0.95)">Бесплатная диагностика, приезд за 30 минут, гарантия до 12 месяцев. Установка SSD, ускорение ПК, восстановление данных.</p>
-        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-          <a class="btn" href="tel:+7 981 017-23-45">Позвонить</a>
-          <a class="btn" href="https://wa.me/79810172345" style="background:linear-gradient(90deg,var(--bg1),var(--bg2));color:white">WhatsApp</a>
-          <a class="btn" href="/blog">Полезные статьи</a>
+      <div style="margin-top:18px" id="services">
+        <h2>Услуги</h2>
+        <div class="services">
+          <div class="service"><div style="font-size:28px">💻</div><div><h4>Ремонт компьютеров и ноутбуков</h4><div class="small">Диагностика, замена деталей, ремонт плат.</div></div></div>
+          <div class="service"><div style="font-size:28px">🧹</div><div><h4>Чистка и термопаста</h4><div class="small">Устраню перегрев и шум, заменю термопасту.</div></div></div>
+          <div class="service"><div style="font-size:28px">⚙️</div><div><h4>Установка и настройка Windows</h4><div class="small">Чистая установка, драйверы, оптимизация.</div></div></div>
+          <div class="service"><div style="font-size:28px">🔒</div><div><h4>Удаление вирусов и восстановление данных</h4><div class="small">Частичная/полная очистка и возврат важных файлов.</div></div></div>
         </div>
-
-        <h2 style="color:white;margin-top:22px">Услуги</h2>
-        <div style="display:grid;grid-template-columns:1fr;gap:10px;max-width:800px">
-          <div class="card"><strong>Бесплатная диагностика</strong><p style="color:var(--muted)">Выезд и диагностика бесплатно. Сначала делаю оценку и согласую стоимость.</p></div>
-          <div class="card"><strong>Чистка и термопаста</strong><p style="color:var(--muted)">Полная чистка, замена термопасты — меньше шума, стабильнее температура.</p></div>
-          <div class="card"><strong>Ускорение (SSD, RAM)</strong><p style="color:var(--muted)">Замена HDD на SSD, увеличение RAM и оптимизация ПО.</p></div>
-          <div class="card"><strong>Восстановление данных</strong><p style="color:var(--muted)">Конфиденциально восстанавливаю важные файлы — по возможности.</p></div>
-        </div>
-      </section>
-
-      <aside class="card" style="max-width:420px">
-        <h3>Оставьте заявку — перезвоню в течение 10 минут</h3>
-        <form action="https://formsubmit.co/ivanhoron@mail.ru" method="POST">
-          <input type="hidden" name="_subject" value="Новая заявка — Ремонт ПК (с сайта)" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input name="Имя" type="text" placeholder="Ваше имя" required />
-          <input name="Телефон" type="tel" placeholder="+7 9__ ___ __ __" required />
-          <select name="Услуга">
-            <option>Диагностика</option>
-            <option>Чистка и термопаста</option>
-            <option>Ускорение (SSD/RAM)</option>
-            <option>Восстановление данных</option>
-            <option>Другое</option>
-          </select>
-          <textarea name="Комментарий" rows="3" placeholder="Кратко опишите проблему (необязательно)"></textarea>
-          <button type="submit">Отправить заявку — перезвоню</button>
-          <p style="font-size:13px;color:var(--muted);margin-top:8px">Или позвоните: <a href="tel:+7 981 017-23-45">+7 981 017-23-45</a></p>
-        </form>
-        <hr style="margin:12px 0;border:none;border-top:1px solid #f1f5f9" />
-        <div style="font-size:13px;color:var(--muted)"><strong>Гарантия</strong><p style="margin:6px 0">До 12 месяцев на работы и установленные запчасти.</p></div>
-      </aside>
-    </main>
-
-    <footer style="margin-top:28px;color:rgba(255,255,255,0.9)">
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div>© Компьютерный мастер Иван · Санкт-Петербург</div>
-        <div>Тел: <a href="tel:+7 981 017-23-45" style="color:white">+7 981 017-23-45</a> · Email: <a href="mailto:ivanhoron@mail.ru" style="color:white">ivanhoron@mail.ru</a></div>
       </div>
-    </footer>
-  </div>
+
+      <div style="margin-top:18px" id="prices">
+        <h2>Прайс-лист</h2>
+        <div class="prices">
+          <div class="card"><strong>Диагностика</strong><div class="small">0 ₽ — при выезде</div></div>
+          <div class="card"><strong>Установка Windows</strong><div class="small">от 800 ₽</div></div>
+          <div class="card"><strong>Замена термопасты</strong><div class="small">500 ₽</div></div>
+          <div class="card"><strong>Замена SSD/HDD</strong><div class="small">от 600 ₽</div></div>
+          <div class="card"><strong>Восстановление данных</strong><div class="small">от 900 ₽</div></div>
+          <div class="card"><strong>Удаление вирусов</strong><div class="small">от 700 ₽</div></div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px" id="testimonials">
+        <h2>Отзывы</h2>
+        <div class="testimonials">
+          <div class="test">“Иван приехал в тот же день, всё сделал за 30 минут — ноутбук летает!” — <em>Александр, СПб</em></div>
+          <div class="test">“Спас мой компьютер после вируса, спасибо огромное! Всем советую!” — <em>Марина, Петроградка</em></div>
+          <div class="test">“Приятный мастер, всё объяснил и показал. 10/10.” — <em>Игорь, Васильевский остров</em></div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px" id="about">
+        <h2>Обо мне</h2>
+        <div class="card about">
+          <div class="avatar">ИВ</div>
+          <div>
+            <h3 style="margin-top:0">Иван — частный мастер с 10+ лет опытом</h3>
+            <p>Здравствуйте! Меня зовут Иван — я частный компьютерный мастер с более чем <strong>10-летним опытом</strong> ремонта и обслуживания компьютеров и ноутбуков в Санкт-Петербург.</p>
+            <p>Я не просто чиню технику — я <strong>решаю задачи быстро, честно и с гарантией</strong>. Мои клиенты ценят меня за оперативность, прозрачность и отсутствие лишних расходных позиций.</p>
+            <ul class="small">
+              <li>✅ Бесплатная выездная диагностика</li>
+              <li>✅ Гарантия до 12 месяцев на работы</li>
+              <li>✅ Установленные запчасти с чеками и документами</li>
+              <li>✅ Консультации по профилактике и апгрейду</li>
+            </ul>
+            <p><strong>Почему выбирают меня:</strong> я работаю без посредников — это значит, вы платите только за работу и запчасти, без лишних комиссий. Я приезжаю быстро, объясняю проблему понятным языком и показываю сделанное.</p>
+            <div style="margin-top:8px">
+              <a class="btn" href="tel:+7 981 017-23-45">Позвонить</a>
+              <a class="btn-ghost" href="https://wa.me/79810172345">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <aside class="card">
+      <h3>Оставьте заявку — перезвоню в течение 10 минут</h3>
+      <form action="https://formsubmit.co/ivanhoron@mail.ru" method="POST">
+        <input type="hidden" name="_subject" value="Новая заявка — Ремонт ПК (с сайта)" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input name="Имя" type="text" placeholder="Ваше имя" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #eef2ff;margin-top:8px"/>
+        <input name="Телефон" type="tel" placeholder="+7 9__ ___ __ __" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #eef2ff;margin-top:8px"/>
+        <select name="Услуга" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eef2ff;margin-top:8px">
+          <option>Диагностика</option>
+          <option>Чистка и термопаста</option>
+          <option>Ускорение (SSD/RAM)</option>
+          <option>Восстановление данных</option>
+          <option>Другое</option>
+        </select>
+        <textarea name="Комментарий" rows="3" placeholder="Кратко опишите проблему (необязательно)" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eef2ff;margin-top:8px"></textarea>
+        <button type="submit" class="btn" style="width:100%;margin-top:10px">Отправить заявку — перезвоню</button>
+      </form>
+      <hr style="margin:12px 0;border:none;border-top:1px solid #f1f5f9" />
+      <div class="contact-row">
+        <div><strong>Тел:</strong> <a href="tel:+7 981 017-23-45">+7 981 017-23-45</a></div>
+        <div><strong>Email:</strong> <a href="mailto:ivanhoron@mail.ru">ivanhoron@mail.ru</a></div>
+        <div class="small">Работаю ежедневно с 9:00 до 22:00</div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <div class="small">© Компьютерный мастер Иван · Санкт-Петербург</div>
+    </div>
+  </footer>
+</div>
 </body>
 </html>

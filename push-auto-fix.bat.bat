@@ -1,10 +1,10 @@
 @echo on
-title Commit & Push — Computer Master Ivan
+title Обновление сайта Computer Master Ivan
 color 0B
 setlocal enabledelayedexpansion
 
 echo =====================================================
-echo 🚀 АВТОМАТИЧЕСКИЙ ПЕРВЫЙ COMMIT И PUSH
+echo 🚀 Обновление сайта и загрузка на GitHub
 echo =====================================================
 pause
 
@@ -12,51 +12,29 @@ set "LOCAL_DIR=C:\Users\user\Downloads\computer-master-ivan-full"
 set "REPO_URL=https://github.com/araarkadij75-oss/remontpc-ivan.git"
 
 cd /d "%LOCAL_DIR%" || (
-  echo ❌ Папка %LOCAL_DIR% не найдена.
+  echo ❌ Папка не найдена!
   pause
   exit /b 1
 )
 
-echo 🔍 Проверка Git...
+echo ⚙️ Проверка Git...
 git --version >nul 2>&1 || (
-  echo ❌ Git не найден. Установи Git с https://git-scm.com/download/win
+  echo ❌ Git не установлен. Скачайте https://git-scm.com/download/win
   pause
   exit /b 1
 )
-echo ✅ Git найден.
 
-echo ⚙️ Проверка репозитория...
-if not exist ".git" (
-  git init
-  echo 🟢 Git-репозиторий создан.
-)
-pause
-
-echo 🔗 Настройка remote origin...
-git remote get-url origin >nul 2>&1 && (
-  git remote set-url origin "%REPO_URL%"
-) || (
-  git remote add origin "%REPO_URL%"
-)
-echo ✅ origin установлен: %REPO_URL%
-pause
-
-echo 📦 Добавление файлов...
+echo ✅ Git найден. Добавляю все файлы...
 git add --all
-pause
 
-echo 🪶 Создание коммита...
-git commit -m "Initial commit — мой сайт Computer Master Ivan"
-pause
+echo 🪶 Создаю коммит...
+git commit -m "🚀 Обновление дизайна сайта (Apple-style, мультяшный логотип)"
 
-echo 🚀 Отправка на GitHub...
+echo 🚀 Отправляю файлы на GitHub...
 git branch -M main
 git push -u origin main
-pause
 
-echo 🎉 ГОТОВО!
-echo ✅ Проверь репозиторий: https://github.com/araarkadij75-oss/remontpc-ivan
-echo.
-echo 🔴 Нажми любую клавишу, чтобы закрыть окно.
+echo 🎉 Готово! Сайт обновлён на GitHub.
+echo ✅ Перейдите по ссылке: https://github.com/araarkadij75-oss/remontpc-ivan
+echo Если проект подключен к Vercel — сайт автоматически обновится.
 pause
-
