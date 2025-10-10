@@ -1,0 +1,8 @@
+==== START PUSH 11.10.2025  2:18:27,88 ==== 
+fatal: couldn't find remote ref main
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/araarkadij75-oss/remontpc-ivan.git'
+⚠️ Ошибка push. Попытка форсированной загрузки...
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/araarkadij75-oss/remontpc-ivan.git'
+==== END PUSH ==== 

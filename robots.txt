@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://remontpc-ivan.example/sitemap.xml
