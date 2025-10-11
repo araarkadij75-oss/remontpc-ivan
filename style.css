@@ -1,4 +1,4 @@
-
+﻿
 :root{--bg:#f6f4f1;--card:#ffffff;--muted:#6b7280;--accent:#3A86FF;--accent2:#8BE9A1;--maxw:1200px}
 *{box-sizing:border-box}html,body{height:100%;margin:0;font-family:Inter,Roboto,Arial,sans-serif;background:var(--bg);color:#0f172a}
 .container{max-width:var(--maxw);margin:28px auto;padding:20px}
@@ -31,3 +31,4 @@
 .footer{margin-top:22px;color:var(--muted);font-size:13px;text-align:center;padding:22px}
 .lang-link{background:transparent}
 .small{font-size:13px;color:var(--muted)}
+
