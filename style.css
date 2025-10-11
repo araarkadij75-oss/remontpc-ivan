@@ -1,11 +1,10 @@
 
-:root{--bg:#f4f6fb;--card:#ffffff;--muted:#6b7280;--accent:#3A86FF;--accent2:#8BE9A1;--maxw:1200px;--radius:14px}
+:root{--bg:#f6f4f1;--card:#ffffff;--muted:#6b7280;--accent:#3A86FF;--accent2:#8BE9A1;--maxw:1200px}
 *{box-sizing:border-box}html,body{height:100%;margin:0;font-family:Inter,Roboto,Arial,sans-serif;background:var(--bg);color:#0f172a}
 .container{max-width:var(--maxw);margin:28px auto;padding:20px}
 .header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:transparent}
 .brand{display:flex;gap:12px;align-items:center}
 .logo-wrap img{width:56px;height:56px}
-.phone{font-weight:800;color:var(--accent)}
 .hero-wrap{position:relative;margin:12px 0;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(16,24,40,0.08)}
 .hero-img{width:100%;display:block;filter:contrast(1.02) saturate(1.02)}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2));display:flex;align-items:center;justify-content:space-between;padding:36px}
@@ -30,3 +29,5 @@
 .fade-in{opacity:0;transform:translateY(12px);animation:fadeUp .7s ease forwards}
 @keyframes fadeUp{to{opacity:1;transform:none}}
 .footer{margin-top:22px;color:var(--muted);font-size:13px;text-align:center;padding:22px}
+.lang-link{background:transparent}
+.small{font-size:13px;color:var(--muted)}
