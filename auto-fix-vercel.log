@@ -1,0 +1,46 @@
+﻿2025-10-11 19:28:56  START auto-fix-vercel
+2025-10-11 19:28:56  Public folder exists: C:\Users\user\Downloads\computer-master-ivan-full\public
+2025-10-11 19:28:56  logo.svg exists
+2025-10-11 19:28:56  Downloading svc-install-ru.jpg (try 1): https://images.pexels.com/photos/4792716/pexels-photo-4792716.jpeg?auto=compress&cs=tinysrgb&w=720
+2025-10-11 19:28:56  Download error: Удаленный сервер возвратил ошибку: (404) Не найден.
+2025-10-11 19:28:58  Downloading svc-install-ru.jpg (try 2): https://images.pexels.com/photos/4792716/pexels-photo-4792716.jpeg?auto=compress&cs=tinysrgb&w=720
+2025-10-11 19:28:58  Download error: Удаленный сервер возвратил ошибку: (404) Не найден.
+2025-10-11 19:29:00  Downloading svc-install-ru.jpg (try 3): https://images.pexels.com/photos/4792716/pexels-photo-4792716.jpeg?auto=compress&cs=tinysrgb&w=720
+2025-10-11 19:29:01  Download error: Удаленный сервер возвратил ошибку: (404) Не найден.
+2025-10-11 19:29:03  Wrote placeholder for svc-install-ru.jpg
+2025-10-11 19:29:03  Downloading svc-clean-ru.jpg (try 1): https://images.pexels.com/photos/4792722/pexels-photo-4792722.jpeg?auto=compress&cs=tinysrgb&w=720
+2025-10-11 19:29:03  Download error: Удаленный сервер возвратил ошибку: (404) Не найден.
+2025-10-11 19:29:05  Downloading svc-clean-ru.jpg (try 2): https://images.pexels.com/photos/4792722/pexels-photo-4792722.jpeg?auto=compress&cs=tinysrgb&w=720
+2025-10-11 19:29:05  Download error: Удаленный сервер возвратил ошибку: (404) Не найден.
+2025-10-11 19:29:07  Downloading svc-clean-ru.jpg (try 3): https://images.pexels.com/photos/4792722/pexels-photo-4792722.jpeg?auto=compress&cs=tinysrgb&w=720
+2025-10-11 19:29:07  Download error: Удаленный сервер возвратил ошибку: (404) Не найден.
+2025-10-11 19:29:09  Wrote placeholder for svc-clean-ru.jpg
+2025-10-11 19:29:09  Downloading svc-repair-ru.jpg (try 1): https://images.pexels.com/photos/4792720/pexels-photo-4792720.jpeg?auto=compress&cs=tinysrgb&w=720
+2025-10-11 19:29:09  Download error: Удаленный сервер возвратил ошибку: (404) Не найден.
+2025-10-11 19:29:11  Downloading svc-repair-ru.jpg (try 2): https://images.pexels.com/photos/4792720/pexels-photo-4792720.jpeg?auto=compress&cs=tinysrgb&w=720
+2025-10-11 19:29:11  Download error: Удаленный сервер возвратил ошибку: (404) Не найден.
+2025-10-11 19:29:13  Downloading svc-repair-ru.jpg (try 3): https://images.pexels.com/photos/4792720/pexels-photo-4792720.jpeg?auto=compress&cs=tinysrgb&w=720
+2025-10-11 19:29:13  Download error: Удаленный сервер возвратил ошибку: (404) Не найден.
+2025-10-11 19:29:15  Wrote placeholder for svc-repair-ru.jpg
+2025-10-11 19:29:15  Downloading hero-ru.jpg (try 1): https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1400
+2025-10-11 19:29:16  Download error: Удаленный сервер возвратил ошибку: (404) Не найден.
+2025-10-11 19:29:24  START auto-fix-vercel
+2025-10-11 19:29:24  Public folder exists: C:\Users\user\Downloads\computer-master-ivan-full\public
+2025-10-11 19:29:24  logo.svg exists
+2025-10-11 19:29:24  Image exists: svc-install-ru.jpg
+2025-10-11 19:29:24  Image exists: svc-clean-ru.jpg
+2025-10-11 19:29:24  Image exists: svc-repair-ru.jpg
+2025-10-11 19:29:24  Downloading hero-ru.jpg (try 1): https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1400
+2025-10-11 19:29:24  Download error: Удаленный сервер возвратил ошибку: (404) Не найден.
+2025-10-11 19:29:26  Downloading hero-ru.jpg (try 2): https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1400
+2025-10-11 19:29:27  Download error: Удаленный сервер возвратил ошибку: (404) Не найден.
+2025-10-11 19:29:29  Downloading hero-ru.jpg (try 3): https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1400
+2025-10-11 19:29:29  Download error: Удаленный сервер возвратил ошибку: (404) Не найден.
+2025-10-11 19:29:31  Wrote placeholder for hero-ru.jpg
+2025-10-11 19:29:31  style.css exists
+2025-10-11 19:29:31  Patched: index.html
+2025-10-11 19:29:31  Patched: index.html
+2025-10-11 19:29:31  Patched: index.html
+2025-10-11 19:29:31  Patched: index.html
+2025-10-11 19:29:31  Patched: index.html
+2025-10-11 19:29:31  Patched: style.css
