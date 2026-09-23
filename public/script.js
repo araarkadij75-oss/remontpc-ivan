@@ -49,19 +49,56 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal && !modal.hidden) closeModal(); });
   modalProblem?.addEventListener('input', () => { modalProblem.dataset.auto = '0'; });
 
-  document.querySelectorAll('.symptoms button').forEach(btn => btn.addEventListener('click', () => {
-    document.querySelectorAll('.symptoms button').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
-    btn.classList.add('active');
-    btn.setAttribute('aria-pressed','true');
-    const d = diagnostics[btn.dataset.key];
-    document.getElementById('diagResultTitle').textContent = d.title;
-    document.getElementById('diagResultText').textContent = d.text;
-    document.getElementById('diagRequest').dataset.service = d.label;
-  }));
-  document.getElementById('diagRequest')?.addEventListener('click', () => {
-    const key = document.querySelector('.symptoms button.active')?.dataset.key || 'power';
-    openModal(diagnostics[key].label);
+  const symptomGroup = document.querySelector('.symptoms');
+  const diagTitle = document.getElementById('diagResultTitle');
+  const diagText = document.getElementById('diagResultText');
+  const diagRequest = document.getElementById('diagRequest');
+  const diagResult = document.querySelector('.diagnostic-result');
+
+  function selectDiagnostic(key) {
+    const d = diagnostics[key];
+    if (!d || !symptomGroup) return;
+
+    symptomGroup.querySelectorAll('button[data-key]').forEach(b => {
+      const active = b.dataset.key === key;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', String(active));
+    });
+
+    if (diagTitle) diagTitle.textContent = d.title;
+    if (diagText) diagText.textContent = d.text;
+    if (diagRequest) {
+      diagRequest.dataset.service = d.label;
+      diagRequest.setAttribute('aria-label', 'Записаться: ' + d.label);
+    }
+
+    if (diagResult) {
+      diagResult.classList.remove('is-updating');
+      void diagResult.offsetWidth;
+      diagResult.classList.add('is-updating');
+      window.setTimeout(() => diagResult.classList.remove('is-updating'), 420);
+    }
+  }
+
+  symptomGroup?.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-key]');
+    if (!btn || !symptomGroup.contains(btn)) return;
+    selectDiagnostic(btn.dataset.key);
   });
+
+  symptomGroup?.addEventListener('keydown', e => {
+    const buttons = [...symptomGroup.querySelectorAll('button[data-key]')];
+    const current = document.activeElement;
+    const index = buttons.indexOf(current);
+    if (index < 0 || !['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) return;
+    e.preventDefault();
+    const delta = (e.key === 'ArrowLeft' || e.key === 'ArrowUp') ? -1 : 1;
+    const next = buttons[(index + delta + buttons.length) % buttons.length];
+    next.focus();
+    selectDiagnostic(next.dataset.key);
+  });
+
+  selectDiagnostic(document.querySelector('.symptoms button.active')?.dataset.key || 'power');
 
   document.querySelectorAll('.faq-item > button').forEach(btn => btn.addEventListener('click', () => {
     const item = btn.closest('.faq-item');
