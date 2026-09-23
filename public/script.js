@@ -189,34 +189,45 @@
 
   async function submitLead(payload, messageEl) {
     const params = new URLSearchParams(location.search);
-    payload.utm = {
+    const utm = {
       source: params.get('utm_source') || '',
       medium: params.get('utm_medium') || '',
       campaign: params.get('utm_campaign') || ''
     };
-    payload.page = location.href;
-    payload.consent = true;
-    payload.website = payload.website || '';
+    const ticket = 'CHN-' + new Date().toISOString().replace(/[-:TZ.]/g,'').slice(0,14) + '-' + Math.floor(100 + Math.random() * 900);
+    const formPayload = {
+      _subject: 'Новая заявка Чинилкин — ' + payload.phone,
+      _template: 'table',
+      _captcha: 'false',
+      _url: location.href,
+      _honey: payload.website || '',
+      'ID заявки': ticket,
+      'Имя': payload.name || 'Не указано',
+      'Телефон': payload.phone,
+      'Проблема': payload.problem || 'Не указана',
+      'Адрес / район': payload.location || 'Не указан',
+      'Источник': payload.source || 'website',
+      'UTM source': utm.source,
+      'UTM medium': utm.medium,
+      'UTM campaign': utm.campaign,
+      'Страница': location.href
+    };
 
     try {
-      const response = await fetch('/api/leads', {
+      const response = await fetch('https://formsubmit.co/ajax/araarkadij75@gmail.com', {
         method: 'POST',
         headers: {'Content-Type':'application/json','Accept':'application/json'},
-        body: JSON.stringify(payload)
+        body: JSON.stringify(formPayload)
       });
       const data = await response.json().catch(() => ({}));
+      const providerOk = response.ok && (data.success === true || data.success === 'true');
 
-      if (response.ok && data.ok && data.mode === 'email') {
-        setMessage(messageEl, 'success', 'Готово. Заявка ' + (data.ticket || '') + ' отправлена. Мы свяжемся с вами.');
-        return {ok:true, data};
+      if (providerOk) {
+        setMessage(messageEl, 'success', 'Готово. Заявка ' + ticket + ' отправлена. Мы свяжемся с вами.');
+        return {ok:true, ticket, data};
       }
 
-      if (response.ok && data.ok && data.mode === 'whatsapp-handoff') {
-        openWhatsAppFallback(payload, messageEl);
-        return {ok:false, fallback:true, data};
-      }
-
-      throw new Error(data.error || 'Ошибка отправки');
+      throw new Error(data.message || 'Ошибка почтовой доставки');
     } catch (error) {
       openWhatsAppFallback(payload, messageEl);
       return {ok:false, fallback:true, error};
