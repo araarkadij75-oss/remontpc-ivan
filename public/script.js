@@ -430,7 +430,9 @@
 
   async function runUiAudit() {
     if (new URLSearchParams(location.search).get('ui_test') !== '1') return;
+    document.title = 'UI AUDIT START — Чинилкин';
     const results = [];
+    try {
     const check = (name, value) => results.push({name, ok:Boolean(value)});
 
     const internal = $$('a[href^="#"]');
@@ -489,7 +491,8 @@
     }
 
     if (quickForm) {
-      quickForm.phone.value = '123';
+      const quickPhone = $('[name="phone"]', quickForm);
+      quickPhone.value = '123';
       quickForm.requestSubmit();
       await new Promise(r => setTimeout(r,0));
       check('quick form validation', $('#quickMessage')?.classList.contains('error'));
@@ -498,14 +501,16 @@
     }
 
     if (requestForm) {
+      const reqPhone = $('[name="phone"]', requestForm);
+      const reqConsent = $('[name="consent"]', requestForm);
       openModal('Audit form');
-      requestForm.phone.value = '123';
-      requestForm.consent.checked = true;
+      reqPhone.value = '123';
+      reqConsent.checked = true;
       requestForm.requestSubmit();
       await new Promise(r => setTimeout(r,0));
       check('request form phone validation', $('#fullMessage')?.classList.contains('error'));
-      requestForm.phone.value = '+7 999 999-99-99';
-      requestForm.consent.checked = false;
+      reqPhone.value = '+7 999 999-99-99';
+      reqConsent.checked = false;
       requestForm.requestSubmit();
       await new Promise(r => setTimeout(r,0));
       check('request form consent validation', $('#fullMessage')?.classList.contains('error'));
@@ -523,6 +528,10 @@
     const passed = results.filter(r => r.ok).length;
     addAuditPanel(results.map(r => (r.ok ? 'PASS ' : 'FAIL ') + r.name), passed, results.length);
     document.title = 'UI AUDIT ' + passed + '/' + results.length + ' — Чинилкин';
+    } catch (error) {
+      addAuditPanel(['ERROR ' + (error && error.stack ? error.stack : String(error))], 0, 1);
+      document.title = 'UI AUDIT ERROR — Чинилкин';
+    }
   }
 
   document.addEventListener('click', onDocumentClick);
