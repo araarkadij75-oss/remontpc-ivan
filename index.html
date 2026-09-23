@@ -93,6 +93,14 @@ img,svg,video,canvas{max-width:100%}
   .modal-card{width:100%;max-width:620px;max-height:calc(100dvh - 24px)}
   input,textarea{max-width:100%;min-width:0}
 }
+/* Mobile: header scrolls with the page; bottom quick actions stay fixed */
+@media(max-width:640px){
+  .topbar{
+    position:relative;
+    top:auto;
+    margin-top:8px;
+  }
+}
 </style>
 </head>
 <body>
