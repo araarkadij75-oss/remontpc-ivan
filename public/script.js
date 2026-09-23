@@ -108,8 +108,12 @@
   }
   function handoffToWhatsApp(payload, msgEl){
     const url = whatsappUrl(payload);
-    const opened = window.open(url, '_blank', 'noopener,noreferrer');
-    if (!opened) window.location.href = url;
+    const opened = window.open(url, '_blank');
+    if (opened) {
+      try { opened.opener = null; } catch {}
+    } else {
+      window.location.href = url;
+    }
     setMessage(msgEl,'success','Готово: заявка подготовлена в WhatsApp. В открывшемся чате нажмите «Отправить» — так она сразу попадёт оператору.');
   }
 
