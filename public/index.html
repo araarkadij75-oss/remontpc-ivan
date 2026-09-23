@@ -75,6 +75,24 @@ h1 span{background:linear-gradient(103deg,#fff 8%,#86e8ff 45%,#1cd2fb 66%,#026af
 @keyframes dockPulseWhatsApp{0%,100%{box-shadow:0 8px 24px rgba(18,197,91,.40),0 0 0 0 rgba(40,220,112,.36)}50%{box-shadow:0 10px 30px rgba(18,197,91,.57),0 0 0 7px rgba(40,220,112,0)}}
 @keyframes dockShine{0%,58%{left:-45%;opacity:0}68%{opacity:.75}84%,100%{left:122%;opacity:0}}
 @media(prefers-reduced-motion:reduce){.mobile-dock .dock-call,.mobile-dock .dock-whatsapp,.mobile-dock .dock-call::after,.mobile-dock .dock-whatsapp::after{animation:none!important}}
+/* Mobile viewport lock: prevent horizontal wandering / rubber-band drift */
+html,body{width:100%;max-width:100%;overflow-x:hidden;overscroll-behavior-x:none}
+body{position:relative;min-height:100svh;touch-action:pan-y pinch-zoom}
+@supports (overflow:clip){html,body{overflow-x:clip}}
+.hero>*,.service-grid>*,.process-grid>*,.location-grid>*,.diagnostic>*,.guarantee>*,.faq>*,.footer-main>*{min-width:0}
+img,svg,video,canvas{max-width:100%}
+@media(max-width:640px){
+  html{width:100%;max-width:100%;overscroll-behavior:none}
+  body{width:100%;max-width:100%;min-width:0;overscroll-behavior-x:none}
+  main{width:100%;max-width:100%;overflow-x:clip}
+  .topbar{max-width:calc(100% - 16px);margin-left:auto;margin-right:auto}
+  .section,.diagnostic,.guarantee,.final-cta,.footer{max-width:calc(100% - 24px)}
+  .hero,.hero-copy,.hero-side,.tech-console,.quick-form,.proof-strip,.service-grid,.service-card,.diagnostic-copy,.diagnostic-result,.process-grid,.location-toolbar,.location-grid,.location-card,.guarantee-grid,.faq-list,.final-actions{min-width:0;max-width:100%}
+  .mobile-dock{left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));width:auto;max-width:none}
+  .modal{width:100%;max-width:100%;padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+  .modal-card{width:100%;max-width:620px;max-height:calc(100dvh - 24px)}
+  input,textarea{max-width:100%;min-width:0}
+}
 </style>
 </head>
 <body>
