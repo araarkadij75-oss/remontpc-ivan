@@ -28,6 +28,9 @@ body{background:radial-gradient(circle at 50% -12%,rgba(2,106,240,.28) 0,transpa
 .btn-primary{background:linear-gradient(135deg,#1cd2fb 0%,#0b9ff7 38%,#026af0 100%);border-color:rgba(28,210,251,.16);box-shadow:0 16px 42px rgba(2,106,240,.32),inset 0 1px rgba(255,255,255,.25)}
 .btn-primary::before{content:"";position:absolute;left:14%;right:14%;bottom:0;height:1px;background:linear-gradient(90deg,transparent,var(--yellow),transparent);opacity:.55}
 .btn-primary:hover{box-shadow:0 20px 54px rgba(2,106,240,.42),0 0 28px rgba(28,210,251,.08),inset 0 1px rgba(255,255,255,.25)}
+.btn-brand{background:linear-gradient(135deg,#fff16a 0%,var(--yellow) 45%,#ffc21c 100%);color:#07111f;border-color:rgba(255,255,255,.22);box-shadow:0 12px 32px rgba(252,225,6,.18),inset 0 1px rgba(255,255,255,.65);text-shadow:none}
+.btn-brand:hover{background:linear-gradient(135deg,#fff598 0%,#ffe51a 48%,#ffc928 100%);box-shadow:0 17px 42px rgba(252,225,6,.28),0 0 24px rgba(252,225,6,.10),inset 0 1px rgba(255,255,255,.7)}
+.btn-brand:active{transform:translateY(0) scale(.99)}
 .btn-ghost{background:rgba(4,22,72,.38);border-color:rgba(28,210,251,.17);color:#e5f6ff}.btn-ghost:hover{background:rgba(11,159,247,.10);border-color:rgba(28,210,251,.42)}
 .eyebrow{color:#6ddefe}.eyebrow::after{content:"";width:18px;height:2px;border-radius:99px;background:var(--yellow);box-shadow:0 0 12px rgba(252,225,6,.5)}
 h1 span{background:linear-gradient(103deg,#fff 8%,#86e8ff 45%,#1cd2fb 66%,#026af0 100%);-webkit-background-clip:text;color:transparent;filter:drop-shadow(0 12px 30px rgba(2,106,240,.16))}
@@ -78,7 +81,7 @@ h1 span{background:linear-gradient(103deg,#fff 8%,#86e8ff 45%,#1cd2fb 66%,#026af
         <span class="phone-dot" aria-hidden="true"></span>
         <span class="phone-text">+7 (981) 017-23-45</span>
       </a>
-      <button class="btn btn-small js-open-modal" type="button" data-service="Диагностика и ремонт">Оставить заявку</button>
+      <button class="btn btn-small btn-brand js-open-modal" type="button" data-service="Диагностика и ремонт">Оставить заявку</button>
     </div>
   </header>
 
