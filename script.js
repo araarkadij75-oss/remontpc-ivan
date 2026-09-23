@@ -227,9 +227,11 @@
     event.preventDefault();
     if (!quickForm) return;
 
-    const phone = String(quickForm.phone?.value || '').trim();
+    const phoneInput = $('[name="phone"]', quickForm);
+    const honeypotInput = $('[name="website"]', quickForm);
+    const phone = String(phoneInput?.value || '').trim();
     const message = $('#quickMessage');
-    const honeypot = String(quickForm.website?.value || '').trim();
+    const honeypot = String(honeypotInput?.value || '').trim();
 
     if (honeypot) {
       setMessage(message, 'success', 'Спасибо. Заявка принята.');
@@ -237,7 +239,7 @@
     }
     if (normalizePhone(phone).length < 10) {
       setMessage(message, 'error', 'Введите корректный номер телефона.');
-      quickForm.phone?.focus();
+      phoneInput?.focus();
       return;
     }
 
@@ -283,12 +285,12 @@
     }
     if (normalizePhone(phone).length < 10) {
       setMessage(message, 'error', 'Проверьте номер телефона.');
-      requestForm.phone?.focus();
+      $('[name="phone"]', requestForm)?.focus();
       return;
     }
     if (!consent) {
       setMessage(message, 'error', 'Нужно согласие на обработку данных для связи по заявке.');
-      requestForm.consent?.focus();
+      $('[name="consent"]', requestForm)?.focus();
       return;
     }
 
