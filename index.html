@@ -359,6 +359,7 @@ h1 span{background:linear-gradient(103deg,#fff 8%,#86e8ff 45%,#1cd2fb 66%,#026af
     ].filter(Boolean);
     return 'https://wa.me/79810172345?text=' + encodeURIComponent(lines.join('\n'));
   }
+
   function handoffToWhatsApp(payload, msgEl){
     const url = whatsappUrl(payload);
     const opened = window.open(url, '_blank');
@@ -367,29 +368,76 @@ h1 span{background:linear-gradient(103deg,#fff 8%,#86e8ff 45%,#1cd2fb 66%,#026af
     } else {
       window.location.href = url;
     }
-    setMessage(msgEl,'success','Готово: заявка подготовлена в WhatsApp. В открывшемся чате нажмите «Отправить» — так она сразу попадёт оператору.');
+    setMessage(msgEl,'success','Заявка подготовлена в WhatsApp. В открывшемся чате нажмите «Отправить».');
+  }
+
+  async function submitLead(payload, msgEl){
+    const params = new URLSearchParams(location.search);
+    payload.utm = {
+      source: params.get('utm_source') || '',
+      medium: params.get('utm_medium') || '',
+      campaign: params.get('utm_campaign') || ''
+    };
+    payload.page = location.href;
+    payload.consent = true;
+    payload.website = '';
+
+    try {
+      const res = await fetch('/api/leads', {
+        method:'POST',
+        headers:{'content-type':'application/json'},
+        body:JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.ok && data.mode === 'stored') {
+        setMessage(msgEl,'success','Готово. Заявка ' + (data.ticket || '') + ' принята. Мы свяжемся с вами.');
+        return {stored:true,data};
+      }
+
+      if (res.ok && data.ok && data.mode === 'whatsapp-handoff') {
+        handoffToWhatsApp(payload,msgEl);
+        return {stored:false,fallback:true,data};
+      }
+
+      throw new Error(data.error || 'Сервис заявок временно недоступен');
+    } catch (err) {
+      handoffToWhatsApp(payload,msgEl);
+      return {stored:false,fallback:true,error:err};
+    }
   }
 
   const quickForm = document.getElementById('quickForm');
-  quickForm?.addEventListener('submit', e => {
+  quickForm?.addEventListener('submit', async e => {
     e.preventDefault();
     const phone = quickForm.phone.value.trim();
     const msg = document.getElementById('quickMessage');
+    const submit = quickForm.querySelector('[type="submit"]');
+
     if (normalizePhone(phone).length < 10) {
       setMessage(msg,'error','Введите корректный номер телефона.');
       quickForm.phone.focus();
       return;
     }
-    handoffToWhatsApp({phone,name:'',problem:'Прошу перезвонить и помочь с ремонтом техники.',location:''}, msg);
+
+    submit.disabled = true;
+    const oldText = submit.textContent;
+    submit.textContent = 'Отправляем…';
+    const result = await submitLead({phone,name:'',problem:'Прошу перезвонить и помочь с ремонтом техники.',location:'',source:'hero_quick'}, msg);
+    if (result.stored) quickForm.reset();
+    submit.disabled = false;
+    submit.textContent = oldText;
   });
 
   const requestForm = document.getElementById('requestForm');
-  requestForm?.addEventListener('submit', e => {
+  requestForm?.addEventListener('submit', async e => {
     e.preventDefault();
     const fd = new FormData(requestForm);
     const phone = String(fd.get('phone')||'').trim();
     const consent = fd.get('consent') === 'on';
     const msg = document.getElementById('fullMessage');
+    const submit = requestForm.querySelector('[type="submit"]');
+
     if (normalizePhone(phone).length < 10) {
       setMessage(msg,'error','Проверьте номер телефона.');
       requestForm.phone.focus();
@@ -400,12 +448,28 @@ h1 span{background:linear-gradient(103deg,#fff 8%,#86e8ff 45%,#1cd2fb 66%,#026af
       requestForm.consent.focus();
       return;
     }
-    handoffToWhatsApp({
+
+    submit.disabled = true;
+    const oldText = submit.textContent;
+    submit.textContent = 'Отправляем…';
+
+    const payload = {
       name:String(fd.get('name')||'').trim(),
       phone,
       problem:String(fd.get('problem')||selectedService).trim(),
-      location:String(fd.get('location')||'').trim()
-    }, msg);
+      location:String(fd.get('location')||'').trim(),
+      source:'request_modal'
+    };
+    const result = await submitLead(payload,msg);
+
+    if (result.stored) {
+      requestForm.reset();
+      if (modalProblem) modalProblem.dataset.auto='1';
+      window.setTimeout(closeModal, 1200);
+    }
+
+    submit.disabled = false;
+    submit.textContent = oldText;
   });
 
   document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', () => {
