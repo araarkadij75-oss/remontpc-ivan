@@ -1,5 +1,4 @@
 (() => {
-  const phoneHref = 'tel:+79810172345';
   const diagnostics = {
     power: { label: 'Не включается', title: 'Начнём с диагностики питания и платы', text: 'Проверим блок питания, разъём, батарею и основные цепи. До ремонта согласуем причину и объём работ.' },
     heat: { label: 'Греется / шумит', title: 'Проверим систему охлаждения', text: 'Замерим температуры, состояние вентиляторов и термоинтерфейсов. Часто помогает профилактика без сложного ремонта.' },
@@ -44,20 +43,22 @@
     document.body.classList.remove('modal-open');
     lastFocus?.focus?.();
   }
+
   document.querySelectorAll('.js-open-modal').forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.service)));
   document.querySelectorAll('[data-close-modal]').forEach(el => el.addEventListener('click', closeModal));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal && !modal.hidden) closeModal(); });
   modalProblem?.addEventListener('input', () => { modalProblem.dataset.auto = '0'; });
 
   document.querySelectorAll('.symptoms button').forEach(btn => btn.addEventListener('click', () => {
     document.querySelectorAll('.symptoms button').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
-    btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed','true');
     const d = diagnostics[btn.dataset.key];
     document.getElementById('diagResultTitle').textContent = d.title;
     document.getElementById('diagResultText').textContent = d.text;
     document.getElementById('diagRequest').dataset.service = d.label;
   }));
-  document.getElementById('diagRequest').addEventListener('click', e => {
+  document.getElementById('diagRequest')?.addEventListener('click', () => {
     const key = document.querySelector('.symptoms button.active')?.dataset.key || 'power';
     openModal(diagnostics[key].label);
   });
@@ -77,52 +78,80 @@
   const esc = s => String(s).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
   function routeUrl(address){ return 'https://yandex.ru/maps/?text=' + encodeURIComponent(address + ', Санкт-Петербург'); }
   function renderLocations(query='') {
+    if (!grid) return;
     const q = query.trim().toLowerCase();
     const filtered = locations.filter(x => (x.name+' '+x.address+' '+x.note).toLowerCase().includes(q));
     grid.innerHTML = filtered.map(x => `<article class="location-card ${x.kind}"><div class="pin" aria-hidden="true">⌖</div><div><div class="location-meta"><span>${x.kind==='service'?'Сервисный центр':'Приём-выдача'}</span>${x.kind==='pickup'?'<em>по записи</em>':''}</div><h3>${esc(x.name)}</h3><p>${esc(x.address)}</p><small>${esc(x.note)}</small></div><a class="route" href="${routeUrl(x.address)}" target="_blank" rel="noopener" aria-label="Открыть маршрут: ${esc(x.address)}">Маршрут ↗</a></article>`).join('');
-    count.textContent = `${filtered.length} ${filtered.length===1?'адрес':filtered.length>=2&&filtered.length<=4?'адреса':'адресов'}`;
-    empty.hidden = filtered.length !== 0;
+    if (count) count.textContent = `${filtered.length} ${filtered.length===1?'адрес':filtered.length>=2&&filtered.length<=4?'адреса':'адресов'}`;
+    if (empty) empty.hidden = filtered.length !== 0;
   }
   renderLocations();
-  search.addEventListener('input', () => renderLocations(search.value));
-  clear.addEventListener('click', () => { search.value=''; renderLocations(); search.focus(); });
+  search?.addEventListener('input', () => renderLocations(search.value));
+  clear?.addEventListener('click', () => { search.value=''; renderLocations(); search.focus(); });
 
-  function normalizePhone(value){ return value.replace(/\D/g,''); }
-  async function sendLead(payload){
-    const params = new URLSearchParams(location.search);
-    payload.utm = {source:params.get('utm_source')||'',medium:params.get('utm_medium')||'',campaign:params.get('utm_campaign')||'',content:params.get('utm_content')||'',term:params.get('utm_term')||''};
-    payload.page = location.href;
-    const res = await fetch('/api/leads',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});
-    const data = await res.json().catch(()=>({}));
-    if(!res.ok) throw new Error(data.error || 'Не удалось отправить заявку');
-    return data;
+  function normalizePhone(value){ return String(value || '').replace(/\D/g,''); }
+  function setMessage(el,type,text){
+    if (!el) return;
+    el.className = `form-message show ${type}`;
+    el.textContent = text;
   }
-  function setMessage(el,type,text){ el.className = `form-message show ${type}`; el.textContent = text; }
+  function whatsappUrl(payload){
+    const lines = [
+      'Здравствуйте! Хочу оставить заявку на ремонт техники.',
+      payload.name ? 'Имя: ' + payload.name : '',
+      'Телефон: ' + payload.phone,
+      payload.problem ? 'Проблема: ' + payload.problem : '',
+      payload.location ? 'Адрес / район: ' + payload.location : '',
+      'Страница: ' + location.href
+    ].filter(Boolean);
+    return 'https://wa.me/79810172345?text=' + encodeURIComponent(lines.join('\n'));
+  }
+  function handoffToWhatsApp(payload, msgEl){
+    const url = whatsappUrl(payload);
+    const opened = window.open(url, '_blank', 'noopener,noreferrer');
+    if (!opened) window.location.href = url;
+    setMessage(msgEl,'success','Готово: заявка подготовлена в WhatsApp. В открывшемся чате нажмите «Отправить» — так она сразу попадёт оператору.');
+  }
 
   const quickForm = document.getElementById('quickForm');
-  quickForm.addEventListener('submit', async e => {
+  quickForm?.addEventListener('submit', e => {
     e.preventDefault();
     const phone = quickForm.phone.value.trim();
     const msg = document.getElementById('quickMessage');
-    const submit = quickForm.querySelector('[type="submit"]');
-    if(normalizePhone(phone).length < 10){ setMessage(msg,'error','Введите корректный номер телефона.'); quickForm.phone.focus(); return; }
-    submit.disabled=true; submit.textContent='Отправляем…';
-    try { const data = await sendLead({phone,name:'',problem:'Быстрая заявка с первого экрана',source:'hero_quick',consent:true,website:''}); setMessage(msg,'success',`Заявка ${data.ticket||''} принята. Мы свяжемся с вами.`); quickForm.reset(); }
-    catch(err){ setMessage(msg,'error',(err.message||'Не удалось отправить заявку')+' Можно позвонить: +7 (981) 017-23-45.'); }
-    finally { submit.disabled=false; submit.textContent='Заказать звонок'; }
+    if (normalizePhone(phone).length < 10) {
+      setMessage(msg,'error','Введите корректный номер телефона.');
+      quickForm.phone.focus();
+      return;
+    }
+    handoffToWhatsApp({phone,name:'',problem:'Прошу перезвонить и помочь с ремонтом техники.',location:''}, msg);
   });
 
   const requestForm = document.getElementById('requestForm');
-  requestForm.addEventListener('submit', async e => {
+  requestForm?.addEventListener('submit', e => {
     e.preventDefault();
-    const fd = new FormData(requestForm); const phone = String(fd.get('phone')||'').trim(); const consent = fd.get('consent') === 'on'; const msg = document.getElementById('fullMessage'); const submit=requestForm.querySelector('[type="submit"]');
-    if(normalizePhone(phone).length < 10){ setMessage(msg,'error','Проверьте номер телефона.'); requestForm.phone.focus(); return; }
-    if(!consent){ setMessage(msg,'error','Нужно согласие на обработку данных для связи по заявке.'); requestForm.consent.focus(); return; }
-    submit.disabled=true; submit.textContent='Отправляем…';
-    try { const data = await sendLead({name:String(fd.get('name')||''),phone,problem:String(fd.get('problem')||selectedService),location:String(fd.get('location')||''),source:'request_modal',consent:true,website:''}); setMessage(msg,'success',`Готово. Заявка ${data.ticket||''} принята.`); requestForm.reset(); modalProblem.dataset.auto='1'; }
-    catch(err){ setMessage(msg,'error',(err.message||'Не удалось отправить заявку')+' Позвоните нам: +7 (981) 017-23-45.'); }
-    finally { submit.disabled=false; submit.textContent='Отправить заявку'; }
+    const fd = new FormData(requestForm);
+    const phone = String(fd.get('phone')||'').trim();
+    const consent = fd.get('consent') === 'on';
+    const msg = document.getElementById('fullMessage');
+    if (normalizePhone(phone).length < 10) {
+      setMessage(msg,'error','Проверьте номер телефона.');
+      requestForm.phone.focus();
+      return;
+    }
+    if (!consent) {
+      setMessage(msg,'error','Нужно согласие на обработку данных для связи по заявке.');
+      requestForm.consent.focus();
+      return;
+    }
+    handoffToWhatsApp({
+      name:String(fd.get('name')||'').trim(),
+      phone,
+      problem:String(fd.get('problem')||selectedService).trim(),
+      location:String(fd.get('location')||'').trim()
+    }, msg);
   });
 
-  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', () => { if(!modal.hidden) closeModal(); }));
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', () => {
+    if (modal && !modal.hidden) closeModal();
+  }));
 })();
