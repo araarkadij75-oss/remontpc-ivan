@@ -1,0 +1,54 @@
+@import url('/assets/fonts/fonts.css');
+
+/* Navy, warm gold and a slow diagnostic pulse. All assets are local. */
+:root{--yellow:#ffe15b;--muted:#b0bfd0}
+body{background:#030b19;color:#f5f8fd}
+body::before{content:"";position:absolute;inset:0 0 auto;height:1100px;background:linear-gradient(180deg,rgba(3,11,25,.2),rgba(3,11,25,.25) 55%,#030b19 100%),url('/assets/circuit-background.webp') center top/cover no-repeat;pointer-events:none}
+.ambient{display:none}
+.topbar{background:rgba(3,11,25,.88);border-color:rgba(255,225,91,.18);box-shadow:0 18px 60px #0004}
+.header-actions{margin-left:auto}
+.hero{min-height:740px;padding-top:90px;gap:64px}
+.hero h1{font-size:clamp(44px,4.8vw,66px);line-height:1.08;letter-spacing:-.055em}
+.hero h1 span{background:linear-gradient(110deg,#fff2a5,#ffe15b 65%,#dfae48);background-clip:text;-webkit-background-clip:text;filter:none}
+.hero-lead{color:#bbc8d8;font-size:17px;line-height:1.8}
+.eyebrow,.form-kicker{color:#ffe494;letter-spacing:.14em}
+.eyebrow::after{width:32px}
+.hero-actions .btn-primary,.quick-form .btn-primary,.final-actions .btn-primary{color:#142035;background:linear-gradient(120deg,#fff2aa,#ffe15b 55%,#edbc43);border-color:#fff3ac80;box-shadow:0 10px 36px #eabb3926}
+.btn{min-height:50px;border-radius:12px}
+.btn-primary:hover,.btn-brand:hover{box-shadow:0 12px 40px #eabb3940}
+.trust-row{margin-top:36px}
+.trust-row>div{border-left:2px solid #ffe15b80}
+.trust-row b{font-size:14px}.trust-row span{font-size:12px;color:#a3b5cb}
+.tech-console{background:linear-gradient(140deg,#06122645,#071427aa),url('/assets/circuit-background.webp') 70% center/cover;border-color:#f2d47035;box-shadow:0 32px 80px #0004}
+.chip-core{background:linear-gradient(145deg,#142e48bb,#041227ee);border-color:#ffe15b80;box-shadow:0 0 0 14px #ffe15b05,0 0 75px #f8cd421c,inset 0 0 34px #ffe15b0a}
+.chip-core span{color:#ffe994;text-shadow:0 0 26px #f6cf4f40}
+.orb-one{border-color:#ffe15b38}.orb-two{border-color:#67cfff30}
+.quick-form{background:linear-gradient(140deg,#0d2035f5,#071324fa);border-color:#ffe15b38;padding:26px}
+.quick-form label,.modal-card label{color:#b7c8da;font-size:13px}
+.quick-form small{color:#9aacbe;font-size:12px}
+.form-kicker{font-size:11px}.status-card span,.telemetry span{color:#b2c3d4}
+.proof-strip{background:#0b1c3099;border-color:#ffe15b22}
+.split-heading{padding-top:110px}
+.split-heading>p,.diagnostic-copy>p,.faq-copy>p{color:#aabed0}
+.glass-card{position:relative;overflow:hidden;background:linear-gradient(145deg,#10273bdb,#071426ef);border-color:#9fc6e323;transition:transform .3s,border-color .3s,box-shadow .3s}
+.glass-card:hover{transform:translateY(-5px);border-color:#ffe15b77;background:linear-gradient(145deg,#15314ae8,#081629f5);box-shadow:0 22px 50px #0004}
+.service-card::after,.mode-card::after,.quick-form::after,.topbar::after{content:"";position:absolute;top:0;left:0;height:1px;width:40%;background:linear-gradient(90deg,transparent,#ffe888,transparent);box-shadow:0 0 18px #ffe15b66;animation:gold-travel 9s ease-in-out infinite;pointer-events:none}
+.service-card:nth-child(2n)::after{animation-delay:-3s}.service-card:nth-child(3n)::after{animation-delay:-6s}
+.service-card .icon-box,.mode-card .icon-box{color:#ffe494;background:#ffe15b0a;border-color:#ffe15b30}
+.service-card p,.mode-card p{color:#aebed0}.tags span{color:#a7bfd3}
+.text-link{color:#ffe494}.text-link:hover{color:#fff2ba}
+.diagnostic{background:linear-gradient(100deg,#071526f5,#0b1c31d9),url('/assets/circuit-background.webp') center/cover;border-color:#ffe15b38;box-shadow:0 30px 90px #0003}
+.diagnostic-result{background:#040e1de6;border-color:#ffe15b42}
+.scan{background:linear-gradient(90deg,transparent,#ffe15b,#a0eaff,transparent);box-shadow:0 0 24px #ffe15b88}
+.symptoms button{font-size:14px}.symptoms button.active{background:#ffe15b12;border-color:#ffe15b90;color:#fff0b0}
+.process-grid article{background:#081628}.process-grid article::after{height:2px;animation:process-glow 5s ease-in-out infinite}.process-grid article:nth-child(2)::after{animation-delay:1s}.process-grid article:nth-child(3)::after{animation-delay:2s}.process-grid article:nth-child(4)::after{animation-delay:3s}
+.location-card{background:#0a1b2de8}.location-card.service{border-color:#ffe15b50;background:linear-gradient(130deg,#17283a,#08182a)}.location-meta span{color:#ffe494}.route{color:#c1e9ff}
+.guarantee{background:linear-gradient(100deg,#0b1c30fa,#09192bdd),url('/assets/circuit-background.webp') right center/cover;border-color:#ffe15b36}
+.guarantee-grid>div{background:#071426aa;border-color:#ffe15b20}
+.final-cta{background:linear-gradient(100deg,#112238ed,#081629c9),url('/assets/circuit-background.webp') center/cover;border-color:#ffe15b55}
+.footer{color:#a7b8cc}.mobile-dock b{font-size:11px}
+@keyframes gold-travel{0%,100%{transform:translateX(-100%);opacity:0}15%,80%{opacity:1}90%{transform:translateX(350%);opacity:0}}
+@keyframes process-glow{0%,100%{opacity:.3}50%{opacity:1;box-shadow:0 0 16px #ffe15b66}}
+@media(max-width:900px){.hero{gap:38px;padding-top:65px}.hero-side{max-width:560px}.hero h1{max-width:760px}.hero-lead{max-width:670px}}
+@media(max-width:640px){body::before{height:1000px;background-position:65% top;opacity:.65}.hero{min-height:0;padding:48px 0 32px;gap:32px}.hero h1{font-size:clamp(36px,10vw,48px);line-height:1.1}.hero-lead{font-size:16px}.hero-side{margin-top:6px}.quick-form{padding:22px}.split-heading{padding-top:76px}.header-actions .btn{font-size:12px}.eyebrow{font-size:10px;letter-spacing:.08em}.trust-row span{font-size:12px}.tech-console{min-height:270px}.mobile-dock a,.mobile-dock button{min-height:52px}.service-card p,.mode-card p{font-size:15px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important}}

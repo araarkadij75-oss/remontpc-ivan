@@ -188,6 +188,7 @@
   }
 
   async function submitLead(payload, messageEl) {
+    window.trackChinilkin?.('lead_attempt', {placement: payload.source});
     const params = new URLSearchParams(location.search);
     const utm = {
       source: params.get('utm_source') || '',
@@ -223,12 +224,15 @@
       const providerOk = response.ok && (data.success === true || data.success === 'true');
 
       if (providerOk) {
+        window.trackChinilkin?.('lead_success', {placement: payload.source});
         setMessage(messageEl, 'success', 'Готово. Заявка ' + ticket + ' отправлена. Мы свяжемся с вами.');
         return {ok:true, ticket, data};
       }
 
       throw new Error(data.message || 'Ошибка почтовой доставки');
     } catch (error) {
+      window.trackChinilkin?.('lead_error', {placement: payload.source});
+      window.trackChinilkin?.('whatsapp_fallback', {placement: payload.source});
       openWhatsAppFallback(payload, messageEl);
       return {ok:false, fallback:true, error};
     }
