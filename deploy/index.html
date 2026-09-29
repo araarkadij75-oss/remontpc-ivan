@@ -196,6 +196,8 @@ body,button,input,textarea,h1,h2,h3,.chip-core span{font-family:Golos,system-ui,
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 .quick-form h2{margin-bottom:8px}.form-caption{margin:0 0 18px}.consent input{accent-color:#ffdf68}.topbar .btn{min-height:46px}
+
+.quick-form h2{margin-bottom:8px}.form-caption{margin:0 0 18px}.consent input{accent-color:#ffdf68}.topbar .btn{min-height:46px}
 </style>
 </head>
 <body>
@@ -832,6 +834,14 @@ window.CHINILKIN_CONFIG = Object.freeze({ metrikaId: 104885771 });
     });
     renderLocations('');
     selectDiagnostic($('.symptoms button.active')?.dataset.key || 'power');
+    // Keep primary conversion controls reliable even when a third-party
+    // analytics listener intercepts a bubbling click.
+    $$('.js-open-modal').forEach(opener => {
+      opener.addEventListener('click', event => {
+        event.preventDefault();
+        openModal(opener.dataset.service || 'Диагностика и ремонт');
+      });
+    });
     if (modal) modal.setAttribute('aria-hidden', modal.hidden ? 'true' : 'false');
   }
 
@@ -960,6 +970,7 @@ window.CHINILKIN_CONFIG = Object.freeze({ metrikaId: 104885771 });
   syncInitialState();
   window.setTimeout(runUiAudit, 250);
 })();
+
 </script>
 <script>
 (()=>{'use strict';if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const observer=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){e.target.animate([{opacity:.55,transform:'translateY(18px)'},{opacity:1,transform:'translateY(0)'}],{duration:650,easing:'cubic-bezier(.2,.7,.2,1)'});observer.unobserve(e.target)}},{threshold:.12});document.querySelectorAll('.mode-card,.service-card,.process-grid article,.guarantee,.final-cta').forEach(el=>observer.observe(el));})();

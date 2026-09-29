@@ -433,6 +433,14 @@
     });
     renderLocations('');
     selectDiagnostic($('.symptoms button.active')?.dataset.key || 'power');
+    // Keep primary conversion controls reliable even when a third-party
+    // analytics listener intercepts a bubbling click.
+    $$('.js-open-modal').forEach(opener => {
+      opener.addEventListener('click', event => {
+        event.preventDefault();
+        openModal(opener.dataset.service || 'Диагностика и ремонт');
+      });
+    });
     if (modal) modal.setAttribute('aria-hidden', modal.hidden ? 'true' : 'false');
   }
 
