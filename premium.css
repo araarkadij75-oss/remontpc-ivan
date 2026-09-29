@@ -1,4 +1,9 @@
-@import url('/assets/fonts/fonts.css');
+@font-face{font-family:Golos;src:url(/assets/fonts/golos-1.ttf) format("truetype");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:Golos;src:url(/assets/fonts/golos-2.ttf) format("truetype");font-style:normal;font-weight:500;font-display:swap}
+@font-face{font-family:Golos;src:url(/assets/fonts/golos-3.ttf) format("truetype");font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:Golos;src:url(/assets/fonts/golos-4.ttf) format("truetype");font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:Golos;src:url(/assets/fonts/golos-5.ttf) format("truetype");font-style:normal;font-weight:800;font-display:swap}
+
 
 /* Navy, warm gold and a slow diagnostic pulse. All assets are local. */
 :root{--yellow:#ffe15b;--muted:#b0bfd0}
@@ -52,3 +57,40 @@ body::before{content:"";position:absolute;inset:0 0 auto;height:1100px;backgroun
 @media(max-width:900px){.hero{gap:38px;padding-top:65px}.hero-side{max-width:560px}.hero h1{max-width:760px}.hero-lead{max-width:670px}}
 @media(max-width:640px){body::before{height:1000px;background-position:65% top;opacity:.65}.hero{min-height:0;padding:48px 0 32px;gap:32px}.hero h1{font-size:clamp(36px,10vw,48px);line-height:1.1}.hero-lead{font-size:16px}.hero-side{margin-top:6px}.quick-form{padding:22px}.split-heading{padding-top:76px}.header-actions .btn{font-size:12px}.eyebrow{font-size:10px;letter-spacing:.08em}.trust-row span{font-size:12px}.tech-console{min-height:270px}.mobile-dock a,.mobile-dock button{min-height:52px}.service-card p,.mode-card p{font-size:15px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important}}
+
+/* Refined typography, spacing and interaction layer */
+body,button,input,textarea,h1,h2,h3,.chip-core span{font-family:Golos,system-ui,sans-serif}
+:root{--line:rgba(164,190,215,.16);--muted:#adbdcc;--yellow:#ffdf68}
+.section{width:min(1180px,calc(100% - 48px))}
+.topbar{border-radius:18px;background:#061221e8;backdrop-filter:blur(24px);padding:12px 20px}
+.hero{padding-top:100px;padding-bottom:88px;gap:70px;min-height:780px}
+.hero h1{font-size:clamp(52px,5.7vw,80px);font-weight:600;line-height:1.04;letter-spacing:-.06em;margin:28px 0}
+.hero h1 span{margin-top:12px}.hero-lead{max-width:510px;font-size:18px;line-height:1.7}
+.hero-actions{margin-top:32px}.btn{font-weight:600;min-height:54px;padding:0 24px;border-radius:12px;transition:transform .25s,box-shadow .25s,background .25s}
+.btn-primary,.btn-brand{background:linear-gradient(120deg,#ffeaa1,#ffda58)!important;color:#18202b!important;border:1px solid #ffe998!important;box-shadow:0 8px 28px #ffd95b20!important}
+.btn-primary:hover,.btn-brand:hover{box-shadow:0 12px 40px #ffd95b38!important;transform:translateY(-3px)}
+.btn-ghost{background:#ffffff05;border-color:#ffffff26}.btn:active{transform:translateY(0) scale(.98)}
+.eyebrow,.form-kicker{font-size:10px;letter-spacing:.15em;font-weight:600}
+.trust-row{gap:20px}.trust-row>div{flex-basis:120px}.trust-row b{font-weight:600}
+.tech-console{border-radius:32px;min-height:410px;background-color:#061320}
+.quick-form{border-radius:22px;padding:28px;background:linear-gradient(145deg,#112439fa,#081524fa);box-shadow:0 30px 70px #0005}
+.form-caption{color:#b6c4d4;font-size:13px;line-height:1.6;margin:10px 0 0}.quick-form h2{font-size:25px;font-weight:500;margin:12px 0 22px;letter-spacing:-.04em}
+.quick-form small{font-size:10px;line-height:1.65}.quick-form input{height:54px;background:#020a1455}
+.split-heading{padding-top:120px;margin-bottom:36px;gap:50px}.split-heading h2,.diagnostic h2,.guarantee h2,.faq h2,.final-cta h2{font-size:clamp(34px,4vw,54px);font-weight:500;letter-spacing:-.045em;line-height:1.13}
+.split-heading>p{max-width:360px;font-size:15px}.glass-card{border-radius:24px;background:linear-gradient(150deg,#11253a99,#071321);box-shadow:inset 0 1px #ffffff06}
+.mode-card,.service-card{padding:30px}.glass-card h3{font-weight:500;letter-spacing:-.035em;font-size:23px}.glass-card p{font-size:14px;line-height:1.8}.icon-box{border-radius:14px;font-size:25px}
+.tags span{font-size:10px;border-radius:6px;background:#ffffff04}.text-link{font-weight:500;font-size:13px}
+.proof-strip{border-radius:0;border-inline:0;background:transparent}.proof-strip div{color:#a9b9c9;min-height:76px;font-size:12px}
+.diagnostic,.guarantee,.final-cta{border-radius:30px}.diagnostic-result{border-radius:22px}.symptoms button{border-radius:10px;min-height:44px}
+.process-grid article{border-radius:20px;padding:26px;border-color:#ffffff12}.process-grid article h3{font-weight:500}.process-grid article p{color:#aebed0;line-height:1.8}
+.faq-item{border-bottom:1px solid #ffffff17}.faq-item button{padding-block:24px;font-weight:500}.faq-answer p{color:#afbed0;line-height:1.8}
+.modal-backdrop{background:#020711c9;backdrop-filter:blur(14px)}.modal-card{border:1px solid #ffdc6850;border-radius:28px;background:linear-gradient(145deg,#14283e,#071323);box-shadow:0 40px 120px #0009;animation:dialog-arrive .32s cubic-bezier(.2,.8,.2,1)}
+.modal-card h2{font-size:34px;line-height:1.16;font-weight:500;letter-spacing:-.045em;max-width:460px}.modal-card>p{font-size:14px;line-height:1.7;color:#b6c4d4}.modal-close{border:1px solid #ffffff26;border-radius:50%;width:40px;height:40px;background:#ffffff07}
+.modal-card input,.modal-card textarea{background:#020b1655;border-color:#ffffff22;padding:13px}.modal-card input:focus,.modal-card textarea:focus{border-color:#ffdf68;box-shadow:0 0 0 3px #ffdf6810}.modal-alt{color:#aebdcd}
+@keyframes dialog-arrive{from{opacity:0;transform:translateY(22px) scale(.98)}to{opacity:1;transform:none}}
+@media(min-width:901px){.service-card:first-child{grid-column:span 2}.service-card:first-child h3{font-size:30px}.service-card:first-child p{max-width:490px}.service-card:first-child{background:radial-gradient(ellipse at 100% 0,#ffda5812,transparent 60%),#0c1d30}}
+@media(max-width:900px){.hero{padding-top:65px;gap:38px;min-height:0}.hero h1{font-size:clamp(48px,8vw,70px)}.split-heading{padding-top:90px}}
+@media(max-width:640px){.section{width:calc(100% - 32px);max-width:calc(100% - 32px)}.hero{padding:45px 0 42px;gap:32px}.hero h1{font-size:clamp(43px,12vw,58px);margin:23px 0;letter-spacing:-.055em}.hero-lead{font-size:16px}.topbar{padding:10px 12px}.hero-actions .btn{padding-inline:17px;font-size:13px}.trust-row{gap:10px}.trust-row>div{flex-basis:85px;padding-left:10px}.trust-row b{font-size:12px}.trust-row span{font-size:10px}.tech-console{min-height:290px}.quick-form{padding:22px;width:calc(100% - 20px);margin-inline:10px}.split-heading{padding-top:76px;gap:20px}.split-heading h2,.diagnostic h2,.guarantee h2,.faq h2,.final-cta h2{font-size:34px}.mode-card,.service-card{padding:25px}.modal-card{padding:28px 22px;max-height:calc(100dvh - 24px);overflow:auto}.modal-card h2{font-size:29px;padding-right:20px}.modal-card .two-fields{grid-template-columns:1fr}.btn{min-height:50px}.proof-strip div{font-size:11px}.form-caption{font-size:12px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.quick-form h2{margin-bottom:8px}.form-caption{margin:0 0 18px}.consent input{accent-color:#ffdf68}.topbar .btn{min-height:46px}
